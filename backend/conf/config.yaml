@@ -1,0 +1,4 @@
+event_data:
+  csv_path: "/Users/hilton/opt/event_data"
+  incident_file: "111.csv"
+  deployment_file: "222.csv"

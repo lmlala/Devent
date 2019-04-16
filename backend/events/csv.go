@@ -31,6 +31,7 @@ type Incident struct {
 	Assignee int	`json:"assignee	" csv:"Assignee	"`
 	Postmortem	string	`json:"url" csv:"postmortem"`
 	Env string `json:"env" csv:"env"`
+	Component	[]string	`json:"component" csv:_`
 	// Title	string	`json:"title" csv:_`
 }
 
@@ -44,6 +45,7 @@ type Deployment struct {
 	StartTime	DateTime	`json:"start" csv:"Created"`
 	EndTime	DateTime	`json:"end" csv:"Created"`
 	LastTime	int	`json:"last_time" csv:"Time Spent"`
+	Component	[]string	`json:"component" csv:_`
 	// Title	string	`json:"title" csv:_`
 }
 

@@ -1,0 +1,31 @@
+type Incident struct {
+	ID int	`json:"ID" csv:"ID"`
+	StartTime	DateTime	`json:"start" csv:"start_time"`
+	EndTime	DateTime	`json:"end" csv:"end_time"`
+	LastTime	int	`json:"last_time" csv:"last_time"`
+	DownTime	int	`json:"down_time" csv:"down_time"`
+	IsDown	bool	`json:"is_down" csv:"is_down"`
+	IsServiceDown	bool	`json:"is_service_down" csv:"is_service_down"`
+	Description	string	`json:"description" csv:"description"`
+	RootCause	string	`json:"root_cause" csv:"root_cause"`
+	Priority	string	`json:"priority" csv:"priority"`
+	Assignee int	`json:"assignee	" csv:"Assignee	"`
+	Postmortem	string	`json:"url" csv:"postmortem"`
+	Env string `json:"env" csv:"env"`
+	Component	[]string	`json:"component" csv:_`
+	// Title	string	`json:"title" csv:_`
+}
+
+type Deployment struct {
+	ID int	`json:"ID" csv:"ID"`
+	Summary string	`json:"summary" csv:"Summary"`
+	IssueKey	string	`json:"issue_key" csv:"Issue key"`
+	Priority	string	`json:"priority" csv:"Priority"`
+	Assignee int	`json:"assignee	" csv:"Assignee	"`
+	Description	string	`json:"description" csv:"description"`
+	StartTime	DateTime	`json:"start" csv:"Created"`
+	EndTime	DateTime	`json:"end" csv:"Created"`
+	LastTime	int	`json:"last_time" csv:"Time Spent"`
+	Component	[]string	`json:"component" csv:_`
+	// Title	string	`json:"title" csv:_`
+}

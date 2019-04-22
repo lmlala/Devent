@@ -1,0 +1,91 @@
+/**
+ * @author [Hilton Li]
+ * @email [liminghilton@gmail.com]
+ * @create date 2019-04-17 09:58:15
+ * @modify date 2019-04-17 09:58:15
+ * @desc [description]
+ */
+ @import '@fullcalendar/core/main.css';
+ @import '@fullcalendar/daygrid/main.css';
+
+ #header {
+   height: 80px;
+   margin-bottom: 10px;
+   margin-top: 10px;
+   text-align: center;
+ }
+ 
+ #headerline {
+   height: 7px;
+   background: rgb(0, 175, 255);
+   text-align: center;
+   margin-top: 30px;
+ }
+ 
+ #logo {
+   height: 80px;
+   width: 400px;
+   position: relative;
+   left: 5%;
+   vertical-align: middle;
+   text-align: center;
+   top: -55%;
+ }
+ 
+ #title {
+   height: 30px;
+   width: 400px;
+   position: relative;
+   margin-right: 1%;
+   /* left: 70%; */
+   float: right;
+   /* vertical-align: middle; */
+   text-align: center;
+   top: -90%;
+   background: rgb(88, 86, 86);
+   font-weight: bolder;
+   font-size: 20px;
+   color: white;
+   text-align: center;
+   line-height: 30px;
+ }
+ 
+ #logo img {
+   height: 80px;
+   width: 400px;
+ }
+ 
+  
+ #calendarzone {
+  margin-left: 1%;
+  float: left;
+  width: 70%;
+  height: auto;
+}
+
+ #infozone {
+   float: right;
+   width: 25%;
+   height: 100%;
+   margin-right: 1%;
+   border: 3px;
+   border-color: black;
+   border-style: solid;
+ }
+
+ #summary {
+  float: middle;
+  width: 98%;
+  height: 30%;
+  margin-right: 1%;
+  
+}
+
+#detail {
+  float: middle;
+  width: 95%;
+  height: 60%;
+  margin-right: 1%;
+
+}
+

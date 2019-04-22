@@ -3,12 +3,15 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-import FullCalendar from 'vue-full-calendar'
+import FullCalendar from '@fullcalendar/vue'
+// import dayGridPlugin from '@fullcalendar/daygrid'
 // import axios from 'axios'
+// import BootstrapVue from 'bootstrap-vue'
 
-import 'fullcalendar/dist/fullcalendar.min.css'
+import $ from 'jquery'
 
 Vue.use(FullCalendar)
+// Vue.use(BootstrapVue)
 // Vue.use(axios)
 Vue.config.productionTip = false
 

@@ -9,8 +9,8 @@
 package module
 
 import (
-	"time"
 	"fmt"
+	"time"
 )
 
 type DateTime struct {
@@ -21,7 +21,6 @@ type DateTime struct {
 // func (date *DateTime) MarshalCSV() (string, error) {
 // 	return date.Time.Format("2006-2-01 15:04 PM"), nil
 // }
-
 
 // Convert the CSV string as internal date
 func (date *DateTime) UnmarshalCSV(csv string) (err error) {
@@ -34,19 +33,19 @@ func (date *DateTime) UnmarshalCSV(csv string) (err error) {
 }
 
 type Event struct {
-	Type	string	`json:"event_type"`
-	ID int	`json:"ID"`
-	Summary string	`json:"summary"`
-	Url	string	`json:"url"`
-	Priority	string	`json:"priority"`
-	Assignee int	`json:"assignee	"`
-	Description	string	`json:"description"`
-	StartTime	DateTime	`json:"start"`
-	EndTime	DateTime	`json:"end"`
-	LastTime	int	`json:"last_time"`
-	Title	string	`json:"title"`
-	Component []string	`json:"component"`
-	Env	string	`json:"env"`
+	Type        string    `json:"event_type"`
+	ID          int       `json:"id"`
+	Summary     string    `json:"summary"`
+	Url         string    `json:"url"`
+	Priority    string    `json:"priority"`
+	Assignee    int       `json:"assignee	"`
+	Description string    `json:"description"`
+	StartTime   time.Time `json:"start"`
+	EndTime     time.Time `json:"end"`
+	LastTime    int       `json:"last_time"`
+	Title       string    `json:"title"`
+	Component   []string  `json:"component"`
+	Env         string    `json:"env"`
 	// todo: env and component
 }
 
@@ -64,7 +63,10 @@ func ListEvent() (r []*Event, err error) {
 		return r, err
 	}
 
-	r = append(incidents,deployments...)
+	r = append(incidents, deployments...)
 
+	for _, i := range r {
+		fmt.Println(i)
+	}
 	return r, nil
 }

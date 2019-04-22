@@ -1,0 +1,103 @@
+<style>
+@import '@fullcalendar/core/main.css';
+@import '@fullcalendar/daygrid/main.css';
+</style>
+
+<script>
+// // import moment from 'moment'
+import {Calendar, parseISO8601} from '@fullcalendar/core'
+import dayGridPlugin from '@fullcalendar/daygrid'
+import timeGridPlugin from  '@fullcalendar/timeline'
+import axios from 'axios'
+import eventIcon from '../../config/global'
+import Vue from 'vue'
+import $ from 'jquery'
+
+function getEventStyle (e) {
+  // console.log(eventIcon)
+  // console.log("e is: ", e)
+  var color
+  switch (e.event_type) {
+    case 'Incident':
+      switch (e.priority) {
+        case 'P5':
+          color = eventIcon.eventIcon.incident.critical
+          break
+        case 'P4':
+          color = eventIcon.eventIcon.incident.normal
+          break
+        default:
+          color = eventIcon.eventIcon.incident.default
+          break
+      }
+      break
+    case 'Hotfix':
+      color = eventIcon.eventIcon.deployment[e.event_type]
+      break
+    default:
+      color = '#A8A8A8'
+  }
+
+  // console.log('outside color is: ', color)
+  return color.color
+}
+
+export default {
+  name: 'eventCalendar',
+  template: `
+  <div id="lmlm"></div>`,
+  // data () {
+  //   return {
+  //   //   calendarPlugins: [ dayGridPlugin, timeGridPlugin ],
+  //   //   events: [{title: 'e1', start: '2019-04-17T16:17:00Z', end: '2019-04-17T17:19:00Z'},
+  //   //             {title: 'e2', start: '2019-04-18T16:18:00Z', end: '2019-04-18T17:19:00Z'},
+  //   //             {title: 'e3', start: '2019-04-19T16:19:00Z', end: '2019-04-19T17:19:00Z', diplayEventTime: true, eventColor: 'red'}
+  //   //   ]
+  //   }
+  // },
+  // mounted () {
+  //   new Calendar($("#lmlm"), {
+  //     plugins: [ dayGridPlugin ],
+  //   defaultView: 'dayGridMonth'
+  //   }
+  //               )
+  // },
+  
+// mounted () {
+// var el = $("#lmlm")
+// console.log(el)
+// var c = new Calendar(el, {
+//       plugins: [ dayGridPlugin ],
+//       defaultView: 'dayGridMonth'
+//     }
+//                 )
+// console.log(c)  
+}
+var el = $("#lmlm")
+document.addEventListener('DOMContentLoaded', function() {
+  var calendarEl = document.getElementById('lmlm');
+
+  var calendar = new Calendar(calendarEl, {
+    plugins: [ dayGridPlugin, timeGridPlugin ],
+    // defaultView: 'dayGridMonth',
+    defaultView: 'timelineWeek',
+    timeZone: 'UTC +8',
+    slotDuration: '01:00:00',
+    allDayDefault: false,
+    timezone: 'local',
+    header: {
+      left: 'prev,next today',
+      center: 'title',
+      right: 'dayGridMonth,timelineWeek,timelineDay'
+    },
+    events: [{'title': 'e1', 'start': '2019-04-17 16:17:00', 'end': '2019-04-19 17:19:00', 'allDay': 0},
+              {'title': 'e2', 'start': '2019-04-18 16:18:00', 'end': '2019-04-18 15:19:00', 'allDay': 0},
+              {'title': 'e3', 'start': '2019-04-18 06:19:00', 'end': '2019-04-19 11:19:00', 'color': 'red', 'allDay': 0}
+      ]
+  });
+
+  calendar.render(function(){
+    console.log('sdf')
+})
+})
+</script>

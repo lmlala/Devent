@@ -1,0 +1,97 @@
+
+<template>
+
+  <div id="calendarzone">
+  <FullCalendar
+    defaultView="dayGridMonth"
+    :plugins="calendarPlugins"
+    :weekends="true"
+    :events="events"
+    :height=800
+    :contentHeight=750
+    :eventLimit=10
+    :editable=false
+    @eventRender="eventRender"
+    @eventMouseEnter="mouseOver"
+  />
+  </div>
+
+</template>
+
+<script>
+// // import moment from 'moment'
+import FullCalendar from '@fullcalendar/vue'
+import dayGridPlugin from '@fullcalendar/daygrid'
+import axios from 'axios'
+import eventIcon from '../../config/global'
+// import Vue from 'vue'
+
+function getEventStyle (e) {
+  // console.log(eventIcon)
+  // console.log("e is: ", e)
+  var color
+  switch (e.event_type) {
+    case 'Incident':
+      switch (e.priority) {
+        case 'P5':
+          color = eventIcon.eventIcon.incident.critical
+          break
+        case 'P4':
+          color = eventIcon.eventIcon.incident.normal
+          break
+        default:
+          color = eventIcon.eventIcon.incident.default
+          break
+      }
+      break
+    case 'Hotfix':
+      color = eventIcon.eventIcon.deployment[e.event_type]
+      break
+    default:
+      color = '#A8A8A8'
+  }
+
+  // console.log('outside color is: ', color)
+  return color.color
+}
+
+
+export default {
+  name: 'calendar',
+  components: {
+    FullCalendar
+  },
+  data () {
+    return {
+      calendarPlugins: [ dayGridPlugin ],
+      events: []
+    }
+  },
+  mounted () {
+    axios.get('http://127.0.0.1:8000/v1/list').then(response => {
+      // console.log(response.data)
+      response.data.forEach(function (e) {
+        // console.log(e.is_down)
+        // console.log(e.is_service_down)
+        // console.log(e)
+        // console.log(eventIcon.eventIcon.incident.default.color)
+        // console.log("each e is: ", e)
+        e.color = getEventStyle(e)
+      })
+      this.events = response.data
+    })
+  },
+  methods: {
+    eventRender (info) {
+    },
+    mouseOver (info) {
+      console.log(info)
+      console.log(info.view)
+      console.log(info.view.title)
+      console.log(info.view.type)
+      console.log(info.el)
+    }
+  }
+}
+
+</script>

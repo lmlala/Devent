@@ -37,7 +37,8 @@ func main() {
 
 	if err != nil {
 		fmt.Println(err.Error())
-		panic("Read Config Error !!!")
+		fmt.Println("Read Config Error !!!")
+		os.Exit(9)
 	}
     app.Run()
 }
